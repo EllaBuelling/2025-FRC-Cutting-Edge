@@ -19,7 +19,6 @@ import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 public class Robot extends TimedRobot {
   private final DifferentialDrive m_robotDrive;
   private final Joystick m_leftStick;0;
-  private final Joystick m_rightStick;
 
   private final PWMSparkMax m_leftMotor = new PWMSparkMax(0);
   private final PWMSparkMax m_rightMotor = new PWMSparkMax(1);
@@ -33,7 +32,6 @@ public class Robot extends TimedRobot {
 
     m_robotDrive = new DifferentialDrive(m_leftMotor::set, m_rightMotor::set);
     m_leftStick = new Joystick(0);
-    m_rightStick = new Joystick(1);
 
     SendableRegistry.addChild(m_robotDrive, m_leftMotor);
     SendableRegistry.addChild(m_robotDrive, m_rightMotor);
@@ -41,6 +39,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    m_robotDrive.tankDrive(-m_leftStick.getY(), -m_rightStick.getY());
+    m_robotDrive.tankDrive(-m_leftStick.getY(), -m_leftStick.getX());
   }
 }
